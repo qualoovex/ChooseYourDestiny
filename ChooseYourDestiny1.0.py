@@ -1,6 +1,7 @@
 #Programmer: Julian G
 # date: 3/15/24
 #Program: Choose Your Destiny
+
 import time
 import random
 
@@ -11,79 +12,89 @@ def intro():
     print("Your journey begins here...\n")
     time.sleep(1)
 
-def forest_path():
+def forest_path(options):
     print("You start walking along the forest path.")
     time.sleep(1)
     print("As you venture deeper into the forest, you encounter various options:")
     time.sleep(1)
-    print("1. Follow the sparkling stream.")
-    print("2. Investigate the mysterious glow in the distance.")
-    print("3. Enter the hidden cave behind the waterfall.")
-    print("4. Feel the magical presence in the air.")
-    choice = input("Enter your choice (1, 2, 3, or 4): ")
-    if choice == "1":
-        follow_stream()
-    elif choice == "2":
-        investigate_glow()
-    elif choice == "3":
-        enter_cave()
-    elif choice == "4":
-        feel_magical_presence()
+    for i, option in enumerate(options, 1):
+        print(f"{i}. {option}")
+    choice = input(f"Enter your choice (1-{len(options)}): ")
+    choice_index = int(choice) - 1
+    if 0 <= choice_index < len(options):
+        chosen_option = options.pop(choice_index)
+        print(f"\nYou choose to {chosen_option}.")
+        time.sleep(1)
+        if chosen_option == "follow the sparkling stream":
+            follow_stream()
+        elif chosen_option == "investigate the mysterious glow in the distance":
+            investigate_glow()
+        elif chosen_option == "enter the hidden cave behind the waterfall":
+            enter_cave()
+        elif chosen_option == "feel the magical presence in the air":
+            feel_magical_presence()
     else:
-        print("\nInvalid choice. Please enter 1, 2, 3, or 4.\n")
-        forest_path()
+        print("\nInvalid choice. Please enter a valid option.\n")
+        forest_path(options)
 
 def follow_stream():
     print("\nYou follow the sparkling stream, mesmerized by its beauty.")
     time.sleep(1)
+    print("As you walk, you notice colorful flowers and playful butterflies.")
+    time.sleep(1)
     print("The stream leads you to a tranquil clearing with a magical fountain.")
     time.sleep(1)
-    print("You take a moment to rest and refresh yourself.")
+    print("You take a moment to rest and refresh yourself, drinking from the fountain.")
     time.sleep(1)
     print("Feeling rejuvenated, you continue on your quest.\n")
     time.sleep(1)
-    forest_path()
 
 def investigate_glow():
     print("\nYou decide to investigate the mysterious glow in the distance.")
     time.sleep(1)
-    print("As you approach, you discover a field of glowing fireflies.")
+    print("As you approach, you realize the glow is coming from a cluster of enchanted fireflies.")
     time.sleep(1)
-    print("Their soft light guides your path through the forest.")
+    print("The fireflies lead you to a hidden grove filled with mystical flowers.")
     time.sleep(1)
-    print("You feel a sense of peace and wonder as you follow the fireflies.")
+    print("You feel a sense of tranquility and wonder in the grove.")
     time.sleep(1)
-    print("You emerge from the forest feeling inspired and ready to continue your journey.\n")
+    print("You spend some time exploring before continuing your journey.\n")
     time.sleep(1)
-    forest_path()
 
 def enter_cave():
     print("\nYou bravely enter the hidden cave behind the waterfall.")
     time.sleep(1)
-    print("Inside, you find a treasure chest filled with sparkling gems.")
+    print("Inside, you find yourself in a chamber filled with shimmering crystals.")
     time.sleep(1)
-    print("You also discover ancient cave paintings depicting mythical creatures.")
+    print("The crystals emit a soft, soothing light that illuminates the cave.")
     time.sleep(1)
-    print("Although tempted to stay, you know your true quest lies elsewhere.")
+    print("You feel a sense of calm and wonder as you explore the cave.")
     time.sleep(1)
-    print("You leave the cave, carrying the memory of its wonders with you.\n")
+    print("After some time, you emerge from the cave, feeling refreshed and invigorated.\n")
     time.sleep(1)
-    forest_path()
 
 def feel_magical_presence():
     print("\nYou close your eyes and focus on the magical presence in the air.")
     time.sleep(1)
-    print("You sense a connection to the ancient spirits of the forest.")
+    print("You feel a connection to the ancient spirits of the forest.")
     time.sleep(1)
-    print("They offer you guidance and protection on your journey.")
+    print("They guide you through the forest, leading you to hidden wonders.")
     time.sleep(1)
-    print("Filled with newfound strength, you forge ahead with confidence.\n")
+    print("You spend hours wandering through the forest, filled with a sense of peace and wonder.")
     time.sleep(1)
-    forest_path()
+    print("As the sun begins to set, you emerge from the forest, grateful for the magical experience.\n")
+    time.sleep(1)
 
 def main():
     intro()
-    forest_path()
+    options = [
+        "follow the sparkling stream",
+        "investigate the mysterious glow in the distance",
+        "enter the hidden cave behind the waterfall",
+        "feel the magical presence in the air"
+    ]
+    while options:
+        forest_path(options)
 
 if __name__ == "__main__":
     main()
